@@ -1,0 +1,129 @@
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <meta http-equiv=“Pragma” content=”no-cache”>
+<meta http-equiv=“Expires” content=”-1″>
+<meta http-equiv=“CACHE-CONTROL” content=”NO-CACHE”> -->
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="spotter.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+		integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<body onload="myFunction()">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" style="color:white">Spotter v0.1</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+			</ul>
+		</div>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+				<li><button class="btn btn-primary navbar-btn" id="about_button" type="button" data-toggle="modal"
+						data-placement="bottom" title="About" data-target="#aboutModal"
+						style="background-color:#343A40; border-color: #343A40">About</button></li>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="modal fade" tabindex="-1" role="dialog" id="aboutModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Welcome to Spotter!</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Spotter is a bare-bones annotation tool that enables labeling of in-house datasets.</p>
+					<p>For this specific task of civic data annotation, you will be labeling the Environment Canada
+						deliberation dataset on reducing plastic usage. You can find more information <a
+							href="https://www.placespeak.com/en/topic/5716-moving-canada-toward-zero-plastic-waste/">here</a>
+					</p>
+					<p>You will be provided a discussion topic, and associated comments. Your task is to label
+						the comment into one of the five reaction categories - Excited, Happy, Neutral,
+						Concerned, and Angry where Excited and Happy are positive reactions and Concerned and
+						Angry are negative reactions. You can label a comment only once. So, take your time when
+						labeling.</p>
+
+					<p>When you are done for the time being, <b>click End Session to save your task and close
+						the browser window.</b> Next time,
+						you will start from where you left off.</p>
+					<p>If you have questions, email <a href="mailto:mjasim@umass.edu">mjasim@umass.edu</a></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" style="background-color:#343A40"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="parentBox w3-container w3-padding" id="parent_box">
+		<div class="titleBox w3-container w3-padding" id="title_box" style="border-bottom:solid thin lightgrey"></div>
+		<div class="contextBox w3-container w3-padding" id="context_box" style="border-bottom:solid thin lightgrey">
+		</div>
+		<div class="commentBox w3-container w3-padding" id="comment_box" style="border-bottom:solid thin lightgrey">
+		</div>
+		<div class="labelBox w3-container w3-padding" id="label_box" style="border-bottom:solid thin lightgrey">
+			<form action>
+				<div class="form-check">
+					<label class="form-check-label" for="radio1">
+						<input type="radio" class="form-check-input" id="radio_excited" name="optradio"
+							value="Excited">Excited
+					</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label" for="radio2">
+						<input type="radio" class="form-check-input" id="radio_happy" name="optradio"
+							value="Happy">Happy
+					</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label" for="radio1">
+						<input type="radio" class="form-check-input" id="radio_neutral" name="optradio"
+							value="Neutral">Neutral
+					</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label" for="radio2">
+						<input type="radio" class="form-check-input" id="radio_concerned" name="optradio"
+							value="Concerned">Concerned
+					</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label" for="radio1">
+						<input type="radio" class="form-check-input" id="radio_angry" name="optradio"
+							value="Angry">Angry
+					</label>
+				</div>
+			</form>
+		</div>
+		<div class="buttonBox w3-container" id="button_box">
+			<button type="button" id="end_button" class="btn btn-dark" style="margin:10px">End Session</button>
+			<button type="button" id="next_button" class="btn btn-dark" style="margin:10px">Next</button>
+		</div>
+</body>
+
+</html>
+
+<script src="index.js"></script>
+<script src="spotter.js"></script>

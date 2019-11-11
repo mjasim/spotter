@@ -1,0 +1,13 @@
+.parentBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.messageBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
